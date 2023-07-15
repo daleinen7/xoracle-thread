@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import Layout from "../components/layout"
-import DeckSelector from "../components/deckSelector"
+import Layout from "../components/Layout"
+import DeckSelector from "../components/DeckSelector"
 import { supabase } from "../lib/supabase"
 
 const Dashboard = () => {

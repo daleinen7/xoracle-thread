@@ -38,8 +38,6 @@ const CreateDeckPage = () => {
           .select()
         if (error) throw error
 
-        console.log("DATA: ", data)
-
         const deckId = data[0].id
 
         // Insert the cards for the deck

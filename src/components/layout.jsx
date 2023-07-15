@@ -7,7 +7,7 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-
+import { Link } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
@@ -32,6 +32,27 @@ const Layout = ({ children }) => {
           padding: `var(--size-gutter)`,
         }}
       >
+        <nav>
+          <ul
+            style={{
+              display: `flex`,
+              justifyContent: `space-evenly`,
+              listStyle: `none`,
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/createdeck">Create Deck</Link>
+            </li>
+          </ul>
+        </nav>
         <main>{children}</main>
         <footer
           style={{

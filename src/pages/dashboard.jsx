@@ -74,58 +74,63 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div>
-        <div style={{ display: "flex" }}>
-          {decks.map(deck => {
-            if (!deck.isVisible) return null
-            return (
-              <div
-                key={deck.id}
-                onClick={() => handleDeckClick(deck)}
-                style={{
-                  border: "1px solid black",
-                  padding: "10px",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                  background:
-                    selectedDeck && deck.id === selectedDeck.id
-                      ? "lightgray"
-                      : "white",
-                }}
-              >
-                {deck.title}
-              </div>
-            )
-          })}
-        </div>
-        <div>
-          {selectedDeck ? (
-            <div>
-              <button onClick={handleDrawCard} disabled={cards.length === 0}>
-                Draw Card
-              </button>
-              <button onClick={handleReset} disabled={drawnCards.length === 0}>
-                Reset
-              </button>
-            </div>
-          ) : (
-            <div>Please select a deck to view its cards.</div>
-          )}
-          <div>
-            {drawnCards.length > 0 ? (
-              drawnCards.map(card => (
-                <div key={card.id}>
-                  <h3>{card.title}</h3>
-                  <p>{card.prompt}</p>
+      <div className="flex justify-between">
+        <div className="flex-col">
+          <div style={{ display: "flex" }}>
+            {decks.map(deck => {
+              if (!deck.isVisible) return null
+              return (
+                <div
+                  key={deck.id}
+                  onClick={() => handleDeckClick(deck)}
+                  style={{
+                    border: "1px solid black",
+                    padding: "10px",
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    background:
+                      selectedDeck && deck.id === selectedDeck.id
+                        ? "lightgray"
+                        : "white",
+                  }}
+                >
+                  {deck.title}
                 </div>
-              ))
+              )
+            })}
+          </div>
+          <div>
+            {selectedDeck ? (
+              <div>
+                <button onClick={handleDrawCard} disabled={cards.length === 0}>
+                  Draw Card
+                </button>
+                <button
+                  onClick={handleReset}
+                  disabled={drawnCards.length === 0}
+                >
+                  Reset
+                </button>
+              </div>
             ) : (
-              <div>No cards drawn yet.</div>
+              <div>Please select a deck to view its cards.</div>
             )}
+            <div>
+              {drawnCards.length > 0 ? (
+                drawnCards.map(card => (
+                  <div key={card.id}>
+                    <h3>{card.title}</h3>
+                    <p>{card.prompt}</p>
+                  </div>
+                ))
+              ) : (
+                <div>No cards drawn yet.</div>
+              )}
+            </div>
           </div>
         </div>
+        <DeckSelector decks={decks} onDeckToggle={onDeckToggle} />
       </div>
-      <DeckSelector decks={decks} onDeckToggle={onDeckToggle} />
     </Layout>
   )
 }

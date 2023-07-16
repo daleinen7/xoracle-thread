@@ -1,18 +1,16 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react"
 import { Link } from "gatsby"
+import { useAuth } from "../auth/AuthProvider"
 import "../styles/tailwind.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const { user, logout } = useAuth()
+
+  const handleLogout = async () => {
+    await logout()
+  }
+
+  console.log("USER", user)
 
   return (
     <>
@@ -36,6 +34,18 @@ const Layout = ({ children }) => {
             </li>
             <li>
               <Link to="/createdeck">Create Deck</Link>
+            </li>
+            <li>
+              {user ? (
+                <>
+                  <button onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Signup</Link>
+                </>
+              )}
             </li>
           </ul>
         </nav>

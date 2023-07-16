@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
+import { useAuth } from "../auth/AuthProvider"
 import { supabase } from "../lib/supabase"
 
 const CreateDeckPage = () => {
@@ -8,6 +9,8 @@ const CreateDeckPage = () => {
   const [cards, setCards] = useState([])
   const [cardTitle, setCardTitle] = useState("")
   const [cardPrompt, setCardPrompt] = useState("")
+
+  const { user } = useAuth()
 
   const handleAddCard = () => {
     if (cardTitle && cardPrompt) {
@@ -32,7 +35,7 @@ const CreateDeckPage = () => {
             {
               title,
               description,
-              user_id: "8adeca3b-23f7-48cd-81ad-1f4c11b7623e",
+              user_id: user.id,
             },
           ])
           .select()

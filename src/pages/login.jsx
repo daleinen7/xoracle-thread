@@ -15,7 +15,7 @@ const Login = () => {
         password,
       })
       if (error) throw error
-      navigate("/mypage")
+      navigate("/dashboard")
     } catch (error) {
       console.error("Error logging in:", error)
     }

@@ -6,7 +6,7 @@ const DeckSelector = ({ onDeckToggle, decks }) => {
   }
 
   return (
-    <div>
+    <div className="container:sm">
       <h3>Decks</h3>
       <ul>
         {decks.map(deck => (

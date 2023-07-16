@@ -11,15 +11,7 @@ const Header = ({ siteTitle }) => (
       justifyContent: `space-between`,
     }}
   >
-    <Link
-      to="/"
-      style={{
-        fontSize: `var(--font-sm)`,
-        textDecoration: `none`,
-      }}
-    >
-      {siteTitle}
-    </Link>
+    <Link to="/">{siteTitle}</Link>
     <img
       alt="Gatsby logo"
       height={20}

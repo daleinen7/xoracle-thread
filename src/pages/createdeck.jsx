@@ -80,6 +80,7 @@ const CreateDeckPage = () => {
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
+              className="border-2 border-gray-500"
             />
           </label>
         </div>
@@ -100,6 +101,7 @@ const CreateDeckPage = () => {
               type="text"
               value={cardTitle}
               onChange={e => setCardTitle(e.target.value)}
+              className="border"
             />
           </label>
         </div>

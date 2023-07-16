@@ -74,7 +74,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div>
+      <div className="flex">
         <div style={{ display: "flex" }}>
           {decks.map(deck => {
             if (!deck.isVisible) return null

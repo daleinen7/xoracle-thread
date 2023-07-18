@@ -1,23 +1,18 @@
 import React, { useState } from "react"
-import { navigate } from "gatsby"
 import { useAuth } from "../auth/AuthProvider"
-import Layout from "../components/layout"
 
-const Login = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
-  const { login } = useAuth()
+  const { user, login, setUser } = useAuth()
 
   const handleLogin = async event => {
     event.preventDefault()
     await login(email, password)
-    navigate("/")
   }
 
   return (
-    <Layout>
-      <h2>Login</h2>
+    <>
       <form onSubmit={handleLogin}>
         <label>
           Email:
@@ -37,8 +32,7 @@ const Login = () => {
         </label>
         <button type="submit">Login</button>
       </form>
-    </Layout>
+    </>
   )
 }
-
-export default Login
+export default LoginForm

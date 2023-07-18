@@ -27,11 +27,9 @@ const Layout = ({ children }) => {
             }}
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Oracle</Link>
             </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
+
             <li>
               <Link to="/createdeck">Create Deck</Link>
             </li>

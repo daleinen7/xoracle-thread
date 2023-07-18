@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
 import { supabase } from "../lib/supabase"
+import { navigate } from "gatsby"
 
 const AuthContext = createContext()
 
@@ -21,8 +22,19 @@ export const AuthProvider = ({ children }) => {
     getUser()
   }, [])
 
-  const login = async () => {
-    // Perform your logout logic using Supabase authentication methods
+  const login = async (email, password) => {
+    try {
+      const { user, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      if (error) throw error
+      setUser(user)
+      navigate("/")
+      console.log("User logged in successfully", user)
+    } catch (error) {
+      console.error("Error logging in:", error)
+    }
   }
 
   const logout = async () => {
@@ -34,6 +46,7 @@ export const AuthProvider = ({ children }) => {
     user,
     login,
     logout,
+    setUser,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -13,24 +13,23 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      const { data } = await supabase.auth.getUser()
 
-      setUser(user)
+      setUser(data.user)
     }
     getUser()
   }, [])
 
   const login = async (email, password) => {
     try {
-      const { user, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
       if (error) throw error
-      setUser(user)
-      navigate("/")
+
+      setUser(data.user)
+
       console.log("User logged in successfully", user)
     } catch (error) {
       console.error("Error logging in:", error)

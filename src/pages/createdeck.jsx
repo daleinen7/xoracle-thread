@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Layout from "../components/layout"
 import { useAuth } from "../auth/AuthProvider"
 import { supabase } from "../lib/supabase"
+import LoginForm from "../components/LoginForm"
 
 const CreateDeckPage = () => {
   const [title, setTitle] = useState("")
@@ -74,61 +75,65 @@ const CreateDeckPage = () => {
 
   return (
     <Layout>
-      <div>
-        <h2>Create Deck</h2>
+      {user ? (
         <div>
-          <label>
-            Deck Title:
-            <input
-              type="text"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-              className="border-2 border-gray-500"
-            />
-          </label>
+          <h2>Create Deck</h2>
+          <div>
+            <label>
+              Deck Title:
+              <input
+                type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                className="border-2 border-gray-500"
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Description:
+              <textarea
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+              />
+            </label>
+          </div>
+          <h3>Add Cards</h3>
+          <div>
+            <label>
+              Card Title:
+              <input
+                type="text"
+                value={cardTitle}
+                onChange={e => setCardTitle(e.target.value)}
+                className="border"
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Card Prompt:
+              <textarea
+                value={cardPrompt}
+                onChange={e => setCardPrompt(e.target.value)}
+              />
+            </label>
+          </div>
+          <button onClick={handleAddCard}>Add Card</button>
+          <div>
+            {cards.map((card, index) => (
+              <div key={index}>
+                <h4>{card.title}</h4>
+                <p>{card.prompt}</p>
+                <button onClick={() => handleDeleteCard(index)}>Delete</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={handleSubmit}>Submit</button>
         </div>
-        <div>
-          <label>
-            Description:
-            <textarea
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-            />
-          </label>
-        </div>
-        <h3>Add Cards</h3>
-        <div>
-          <label>
-            Card Title:
-            <input
-              type="text"
-              value={cardTitle}
-              onChange={e => setCardTitle(e.target.value)}
-              className="border"
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Card Prompt:
-            <textarea
-              value={cardPrompt}
-              onChange={e => setCardPrompt(e.target.value)}
-            />
-          </label>
-        </div>
-        <button onClick={handleAddCard}>Add Card</button>
-        <div>
-          {cards.map((card, index) => (
-            <div key={index}>
-              <h4>{card.title}</h4>
-              <p>{card.prompt}</p>
-              <button onClick={() => handleDeleteCard(index)}>Delete</button>
-            </div>
-          ))}
-        </div>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+      ) : (
+        <LoginForm />
+      )}
     </Layout>
   )
 }

@@ -34,6 +34,9 @@ const Layout = ({ children }) => {
               <Link to="/createdeck">Create Deck</Link>
             </li>
             <li>
+              <Link to="/decks">Decks</Link>
+            </li>
+            <li>
               {user ? (
                 <>
                   <button onClick={handleLogout}>Logout</button>

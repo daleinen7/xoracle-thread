@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useAuth } from "../auth/AuthProvider"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 const Login = () => {
   const [email, setEmail] = useState("")

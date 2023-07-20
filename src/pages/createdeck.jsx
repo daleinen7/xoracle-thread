@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { useAuth } from "../auth/AuthProvider"
 import { supabase } from "../lib/supabase"
 import LoginForm from "../components/LoginForm"
